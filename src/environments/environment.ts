@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_ENDPOINT: 'http://localhost:3000/',
+  API_ENDPOINT: 'http://localhost:8055/',
   GET_DATA : 'city',
   ADD_NEW_CITY : 'addCity',
   GET_ONE_CITY : 'getOneCity',
