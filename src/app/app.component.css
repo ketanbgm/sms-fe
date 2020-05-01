@@ -1,0 +1,41 @@
+.cards .grids {
+  overflow: hidden;
+  padding: 20px;
+}
+
+.table-cards {
+}
+.cards {
+  border: 1px solid #cecece;
+  box-shadow: 0px 0px 2px #d8d8d8;
+  overflow: hidden;
+  margin: 0 0 30px 0;
+  background: #ffffff;
+  border-radius: 15px;
+}
+
+thead{
+  background: #0072aa;
+    color: #ffffff;
+}
+
+table{
+  border: 1px solid #ddd;
+
+}
+
+thead th {
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+thead th span {
+  visibility: hidden;
+}
+thead th.active {
+  color: #fff;
+}
+thead th.active span {
+  visibility: visible;
+}
+

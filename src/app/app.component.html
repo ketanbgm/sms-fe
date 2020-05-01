@@ -1,0 +1,155 @@
+<div class="container body">
+    <div class="main_container">
+       <h2 class="StepTitle">Masters</h2>
+       <div class="cards">
+        <div class="grids">
+
+       <form *ngIf="masterForm"  [formGroup]="masterForm" (ngSubmit)="onSubmit()" autocomplete="off">
+       <div class="row">
+          <div class="col-md-4">
+             <div class="form-group">
+                <label> City</label>
+                <input class="form-control" placeholder="City" type="text" formControlName="city">
+                <div *ngIf="masterForm.get('city').invalid && (masterForm.get('city').dirty || masterForm.get('city').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('city').errors.required">
+                      *City is required
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="form-group">
+                <label> Price</label>
+                <input class="form-control" placeholder="Price" type="number" formControlName="price" [(ngModel)]='m_price'>
+                <div *ngIf="masterForm.get('price').invalid && (masterForm.get('price').dirty || masterForm.get('price').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('price').errors.required">
+                      *Price is required
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="form-group">
+                <label>Status</label>
+                <input class="form-control" placeholder="Base rate" type="text" formControlName="status" [(ngModel)]='m_status'>
+                <div *ngIf="masterForm.get('status').invalid && (masterForm.get('status').dirty || masterForm.get('status').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('status').errors.required">
+                      *Status is required
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-4">
+             <div class="form-group">
+                <label> Start Date</label>
+                <my-date-picker name="start_date" [options]="myDatePickerOptions" formControlName="start_date"></my-date-picker>
+                <div *ngIf="masterForm.get('start_date').invalid && (masterForm.get('start_date').dirty || masterForm.get('start_date').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('start_date').errors.required">
+                      *Start Date is required
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="form-group">
+                <label> End Date</label>
+                <my-date-picker name="end_date" [options]="myDatePickerOptions" formControlName="end_date"></my-date-picker>
+                <div *ngIf="masterForm.get('end_date').invalid && (masterForm.get('end_date').dirty || masterForm.get('end_date').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('end_date').errors.required">
+                      *End date is required
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="form-group">
+                <label>Color</label>
+                <input class="form-control" placeholder="Color" type="text" formControlName="color" [(ngModel)]='m_color'>
+                <div *ngIf="masterForm.get('color').invalid && (masterForm.get('color').dirty || masterForm.get('color').touched)" class="validationMsg">
+                   <div *ngIf="masterForm.get('color').errors.required">
+                      *Color is required
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-2">
+              
+             <div class="form-group">
+                <button class="btn btn-primary theme_bg_v2" type="button" (click)="clear()">Clear</button>
+             </div>
+          </div>
+          <div class="col-md-2">
+
+             <div class="form-group">
+
+                <button class="btn btn-round btn-success" *ngIf= "!is_editable" [disabled]="masterForm.invalid" >Submit</button>
+                <button class="btn btn-round  btn-success" *ngIf= "is_editable" [disabled]="masterForm.invalid" >Update</button>
+             </div>
+             </div>
+
+       </div>
+       </form>
+       </div>
+       </div>
+
+       
+       <form #f="ngForm" (ngSubmit)="onSubmitNgModel()" novalidate>
+        <div class="row">
+
+          <div class="col-md-4">
+             <div class="form-group">
+                <my-date-range-picker name="ngModelDateRange" placeholder="Start date range" [options]="myDateRangePickerOptions" [(ngModel)]="start_date" required></my-date-range-picker>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="form-group">
+                <my-date-range-picker name="ngModelDateRange" placeholder="End date range" [options]="myDateRangePickerOptions" [(ngModel)]="end_date" required></my-date-range-picker>
+             </div>
+          </div>
+       <div class="col-md-4">
+          <button class="btn btn-round  btn-success" type="submit">Submit</button>
+          <p class="error" *ngIf="!f.valid">Date range is required!</p>
+       </div>
+    </div>
+
+       </form>
+       <div class="table-cards">
+       <div class="row ">
+          <table class="table table-hover">
+              <thead>
+                               <tr>
+                <th>Sl No.</th>
+                <th (click)="sortData('city')">City <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('start_date')">Start Date <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('end_date')">End Date <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('price')">Price <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('status')">Status <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('color')">Color <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+                <th (click)="sortData('start_date')">Action <i class="fa fa-arrows-v" aria-hidden="true"></i></th>
+             </tr>
+             </thead>
+             <ng-container *ngIf="list_status">
+                <tr *ngFor="let data of tblData | paginate: { itemsPerPage: 10, currentPage: p, totalItems: totalItems } | orderBy: order:reverse:'case-insensitive'; let i= index">
+                   <td>{{pageCounter(p, i + 1)}}</td>
+                   <td>{{data.city}}</td>
+                   <td>{{data.start_date}}</td>
+                   <td>{{data.end_date}}</td>
+                   <td>{{data.price}}</td>
+                   <td>{{data.status}}</td>
+                   <td class="square" [style.background-color]="data.color">{{data.color}}</td>
+                   <td>
+                      <i class="fa fa-pencil-square-o" (click)= editCity(data.id)></i> <i class="fa fa-trash" (click) = deleteCity(data.id)></i>
+                   </td>
+                </tr>
+             </ng-container>
+          </table>
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+       </div>
+    </div>
+    </div>
+ </div>
